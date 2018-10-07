@@ -35,7 +35,8 @@ app.post('/', (req, res, next) => {
   slack.users.profile.set({
     token: process.env.SLACK_TOKEN,
     profile: JSON.stringify({
-      "status_text": `${status} from ${start.format('h:mm')} to ${end.format('h:mm a')} ${process.env.TIME_ZONE}`
+      "status_text": `${status} from ${start.format('h:mm')} to ${end.format('h:mm a')} ${process.env.TIME_ZONE}`,
+      "status_emoji": process.env.STATUS_EMOJI
     })
   });
   res.status(200);
@@ -66,7 +67,7 @@ app.get('/', (req, res, next) => {
   "title":"<<<{{Title}}>>>",
   "start":"{{Starts}}",
   "end":"{{Ends}}",
-  "token": "${process.env.SECRET_TOKEN}"
+  "token": "The secret token you set"
 }</pre>
       </body>
     </html>
