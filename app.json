@@ -17,6 +17,11 @@
     "TIME_ZONE": {
       "description": "What time zone are you working from?",
       "value": "CST"
+    },
+    "STATUS_EMOJI": {
+      "description": "What emoji would you like? e.g. :rocket:",
+      "value": ":rocket:",
+      "required": true
     }
   }
 }
