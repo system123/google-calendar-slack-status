@@ -18,7 +18,7 @@ app.post('/', (req, res, next) => {
   if (!req.body.token || req.body.token !== process.env.SECRET_TOKEN) next();
   // grab status and clean it up
   let status = req.body.title;
-  const dndToken = ' [DND]';
+  const dndToken = '[DND]';
   // parse event start/stop time
   const dateFormat = 'MMM D, YYYY [at] hh:mmA';
   const start = moment(req.body.start, dateFormat);
@@ -36,7 +36,8 @@ app.post('/', (req, res, next) => {
     token: process.env.SLACK_TOKEN,
     profile: JSON.stringify({
       "status_text": `${status} from ${start.format('h:mm')} to ${end.format('h:mm a')} ${process.env.TIME_ZONE}`,
-      "status_emoji": process.env.STATUS_EMOJI
+      "status_emoji": process.env.STATUS_EMOJI,
+      "status_expiration": end.unix()
     })
   });
   res.status(200);
